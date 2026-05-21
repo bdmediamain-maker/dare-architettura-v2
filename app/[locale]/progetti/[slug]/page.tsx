@@ -1,11 +1,14 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { routing } from '@/i18n/routing';
 import { getProjectBySlug, projects, categories } from '@/lib/data/projects';
 
-export async function generateStaticParams() {
-  return projects.map(p => ({ slug: p.slug }));
+export function generateStaticParams() {
+  return routing.locales.flatMap((locale) =>
+    projects.map((p) => ({ locale, slug: p.slug }))
+  );
 }
 
 export default async function ProjectDetailPage({
@@ -14,6 +17,7 @@ export default async function ProjectDetailPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const project = getProjectBySlug(slug);
   if (!project) notFound();
 

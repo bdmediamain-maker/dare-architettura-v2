@@ -1,9 +1,13 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { setRequestLocale } from 'next-intl/server';
+import { routing } from '@/i18n/routing';
 import { getNewsBySlug, news } from '@/lib/data/news';
 
-export async function generateStaticParams() {
-  return news.map(n => ({ slug: n.slug }));
+export function generateStaticParams() {
+  return routing.locales.flatMap((locale) =>
+    news.map((n) => ({ locale, slug: n.slug }))
+  );
 }
 
 export default async function NewsDetailPage({
@@ -12,6 +16,7 @@ export default async function NewsDetailPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const item = getNewsBySlug(slug);
   if (!item) notFound();
 

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
-import { getMessages } from 'next-intl/server';
+import { getMessages, setRequestLocale } from 'next-intl/server';
 import Loader from '@/components/ui/Loader';
 import { Sidebar } from '@/components/ui/Sidebar';
 
@@ -13,6 +13,10 @@ export const metadata: Metadata = {
     shortcut: '/logo.png',
   },
 };
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 export default async function LocaleLayout({
   children,
@@ -25,6 +29,9 @@ export default async function LocaleLayout({
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
+
+  // Enable static rendering for this locale
+  setRequestLocale(locale);
 
   const messages = await getMessages();
 

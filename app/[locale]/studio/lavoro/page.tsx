@@ -1,8 +1,9 @@
 import { StudioNav } from '@/components/pages/StudioNav';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 export default async function LavoroPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'studio' });
 
   const intro = locale === 'it'

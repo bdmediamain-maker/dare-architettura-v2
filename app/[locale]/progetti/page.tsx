@@ -1,8 +1,9 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { ProjectsGallery } from '@/components/pages/ProjectsGallery';
 
 export default async function ProgettiPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'progetti' });
   const tNav = await getTranslations({ locale, namespace: 'nav' });
 

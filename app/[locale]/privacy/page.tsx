@@ -1,5 +1,8 @@
+import { setRequestLocale } from 'next-intl/server';
+
 export default async function PrivacyPage({ params }: { params: Promise<{ locale: string }> }) {
-  await params;
+  const { locale } = await params;
+  setRequestLocale(locale);
 
   return (
     <div className="min-h-screen">

@@ -1,9 +1,11 @@
 import Image from 'next/image';
+import { setRequestLocale } from 'next-intl/server';
 import { curriculum } from '@/lib/data/curriculum';
 import { StudioNav } from '@/components/pages/StudioNav';
 
 export default async function CurriculumPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
 
   const bio = locale === 'it'
     ? "Rudy Davi, architetto fondatore dello studio. Laureato con lode allo IUAV di Venezia con una tesi sul nuovo studio di registrazione degli U2 a Dublino. Dal 2005 al 2009 ha lavorato ad Amsterdam presso lo studio Snitker/Borst e successivamente Dok architecten. Nel 2009 fonda lo studio dare-architettura a Ferrara."
