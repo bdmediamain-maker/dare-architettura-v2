@@ -1,0 +1,61 @@
+{
+  "nav": {
+    "home": "Home",
+    "progetti": "Projects",
+    "studio": "Studio",
+    "news": "News",
+    "contatti": "Contact"
+  },
+  "home": {
+    "hero_pre": "dare to dream...is to live",
+    "cta": "Explore projects",
+    "selected_works_title": "SELECTED",
+    "selected_works_subtitle": "WORKS",
+    "manifesto": "...an architecture studio built on the dare-give duality.\nDaring keeps the person alive.\nGiving meets the client's needs.",
+    "start_project": "START A PROJECT",
+    "news_heading": "NEWS",
+    "location_label": "Ferrara / since 2009"
+  },
+  "studio": {
+    "titolo": "Studio",
+    "sottotitolo": "since 2009 — Ferrara",
+    "profilo": "Profile",
+    "curriculum": "Curriculum",
+    "premi": "Awards",
+    "team": "Team",
+    "collaboratori": "Collaborators",
+    "lavoro": "Work with us"
+  },
+  "progetti": {
+    "tutti": "All",
+    "filtro": "Filter by category",
+    "realizzato": "Built",
+    "concorso": "Competition",
+    "anno_incarico": "Commission year",
+    "anno_costruzione": "Construction year",
+    "committente": "Client",
+    "architetto": "Architect",
+    "team": "Project team",
+    "strutture": "Structures",
+    "costruttore": "Contractor",
+    "importo": "Project value",
+    "superficie": "Area",
+    "fotografie": "Photography",
+    "stato": "Status"
+  },
+  "contatti": {
+    "titolo": "Contact",
+    "nome": "Name",
+    "email": "Email",
+    "telefono": "Phone",
+    "oggetto": "Subject",
+    "messaggio": "Message",
+    "invia": "Send message",
+    "privacy": "I consent to personal data processing"
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "read_more": "Read",
+    "see_all": "View all projects"
+  }
+}

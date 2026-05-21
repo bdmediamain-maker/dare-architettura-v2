@@ -1,26 +1,61 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Editorial Monograph palette */
+  --color-page: #FFFFFF;
+  --color-ink: #000000;
+  --color-muted: #888888;
+  --color-disabled: #CCCCCC;
+  --color-rule: #000000;
+  --color-rule-soft: #EEEEEE;
+
+  /* Font */
+  --font-sans: var(--font-inter), 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'Courier New', Courier, monospace;
+
+  /* Easing (kept for legacy refs) */
+  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-radius: 0 !important;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #FFFFFF;
+  color: #000000;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Legacy grain class — visually disabled */
+.grain-overlay {
+  opacity: 0;
+  pointer-events: none;
+  display: none;
+}
+
+/* No border radius anywhere */
+button, input, select, textarea, a, div, section, article, nav, header, footer {
+  border-radius: 0;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #FFFFFF; }
+::-webkit-scrollbar-thumb { background: #CCCCCC; }
+
+/* Selection */
+::selection { background: #000; color: #fff; }
+
+/* Keep content-visibility for images/videos */
+img, video {
+  content-visibility: auto;
 }

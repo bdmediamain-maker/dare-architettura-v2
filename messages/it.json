@@ -1,0 +1,61 @@
+{
+  "nav": {
+    "home": "Home",
+    "progetti": "Progetti",
+    "studio": "Studio",
+    "news": "Novità",
+    "contatti": "Contatti"
+  },
+  "home": {
+    "hero_pre": "osare per sognare...è vivere",
+    "cta": "Scopri i progetti",
+    "selected_works_title": "SELECTED",
+    "selected_works_subtitle": "WORKS",
+    "manifesto": "...uno studio di architettura basato sul binomio osare-dare.\nL'osare mantiene viva la persona.\nIl dare soddisfa le esigenze del committente.",
+    "start_project": "INIZIA UN PROGETTO",
+    "news_heading": "NOVITÀ",
+    "location_label": "Ferrara / dal 2009"
+  },
+  "studio": {
+    "titolo": "Studio",
+    "sottotitolo": "dal 2009 — Ferrara",
+    "profilo": "Profilo",
+    "curriculum": "Curriculum",
+    "premi": "Premi",
+    "team": "Team",
+    "collaboratori": "Collaboratori",
+    "lavoro": "Lavora con noi"
+  },
+  "progetti": {
+    "tutti": "Tutti",
+    "filtro": "Filtra per categoria",
+    "realizzato": "Realizzato",
+    "concorso": "Concorso",
+    "anno_incarico": "Anno incarico",
+    "anno_costruzione": "Anno costruzione",
+    "committente": "Committente",
+    "architetto": "Architetto",
+    "team": "Team di progetto",
+    "strutture": "Strutture",
+    "costruttore": "Costruttore",
+    "importo": "Importo lavori",
+    "superficie": "Superficie",
+    "fotografie": "Fotografie",
+    "stato": "Stato"
+  },
+  "contatti": {
+    "titolo": "Contatti",
+    "nome": "Nome",
+    "email": "Email",
+    "telefono": "Telefono",
+    "oggetto": "Oggetto",
+    "messaggio": "Messaggio",
+    "invia": "Invia messaggio",
+    "privacy": "Acconsento al trattamento dei dati personali"
+  },
+  "footer": {
+    "rights": "Tutti i diritti riservati",
+    "read_more": "Leggi",
+    "see_all": "Vedi tutti i progetti"
+  }
+}
