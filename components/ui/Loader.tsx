@@ -45,35 +45,14 @@ export default function Loader() {
             flexDirection: 'column',
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <Image src="/logo.png" alt="dare-architettura" width={60} height={60} priority />
-            <div>
-              <p
-                style={{
-                  fontSize: '24px',
-                  fontWeight: 500,
-                  letterSpacing: '0.2em',
-                  textTransform: 'uppercase',
-                  color: '#000',
-                  lineHeight: 1,
-                }}
-              >
-                DARE
-              </p>
-              <p
-                style={{
-                  fontSize: '11px',
-                  fontWeight: 400,
-                  letterSpacing: '0.25em',
-                  textTransform: 'uppercase',
-                  color: '#000',
-                  marginTop: '4px',
-                }}
-              >
-                ARCHITETTURA
-              </p>
-            </div>
-          </div>
+          <Image
+            src="/logo-full.png"
+            alt="dare-architettura"
+            width={220}
+            height={50}
+            priority
+            style={{ width: 'auto', height: '56px', objectFit: 'contain' }}
+          />
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: 200 }}

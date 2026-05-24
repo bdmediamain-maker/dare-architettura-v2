@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { news } from '@/lib/data/news';
 
 interface NewsArchiveProps {
@@ -48,15 +47,9 @@ export function NewsArchive({ locale }: NewsArchiveProps) {
 
   return (
     <div className="flex flex-col lg:flex-row gap-12">
-      {/* Year rail — sticky on desktop. Parent uses default align-items:stretch so the
-          aside is as tall as the news column, giving the sticky child a long scroll range. */}
+      {/* Year rail */}
       <aside className="lg:w-[80px] flex-shrink-0">
-        <div
-          className="flex lg:flex-col gap-4 lg:gap-4 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 lg:sticky"
-          style={{
-            top: '100px',
-          }}
-        >
+        <div className="lg:sticky lg:top-24 flex lg:flex-col gap-4 lg:gap-4 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0">
           {allYears.map(year => {
             const hasNews = yearsWithNews.has(year);
             const isActive = activeYear === year;
@@ -94,79 +87,39 @@ export function NewsArchive({ locale }: NewsArchiveProps) {
             ref={(el) => { itemRefs.current[item.slug] = el; }}
             id={`news-${item.slug}`}
             style={{
-              paddingTop: i === 0 ? '0' : '48px',
-              paddingBottom: '48px',
-              borderTop: i === 0 ? 'none' : '1px solid #eee',
+              paddingTop: i === 0 ? '0' : '80px',
+              paddingBottom: '80px',
+              borderTop: i === 0 ? 'none' : '1px solid #000',
             }}
           >
-            {/* Date — SUSSURRA */}
             <p
               style={{
                 fontFamily: 'monospace',
-                fontSize: '11px',
-                fontWeight: 400,
-                color: '#aaa',
+                fontSize: '13px',
+                color: '#888888',
                 textTransform: 'uppercase',
-                letterSpacing: '0.1em',
-                marginBottom: '4px',
+                letterSpacing: '0.05em',
+                marginBottom: '24px',
               }}
             >
               {item.data}
             </p>
-            {/* Title — GRIDA */}
-            <h2 style={{ fontSize: '26px', fontWeight: 600, color: '#000', lineHeight: 1.15, marginBottom: '8px' }}>
+            <h2 style={{ fontSize: '28px', fontWeight: 500, color: '#000', lineHeight: 1.3, marginBottom: '24px' }}>
               {item.titolo}
             </h2>
-            {/* Short hairline accent */}
-            <div style={{ width: '40px', height: '1px', background: '#000', marginBottom: '12px' }} />
-            {/* Body — PARLA */}
-            <p style={{ fontSize: '15px', fontWeight: 400, color: '#555', lineHeight: 1.65 }}>
+            <p style={{ fontSize: '18px', fontWeight: 400, color: '#000', lineHeight: 1.7 }}>
               {item.testo}
             </p>
-            {item.immagini && item.immagini.length > 0 && (
-              <div
-                style={{
-                  display: 'flex',
-                  gap: '8px',
-                  marginTop: '24px',
-                  flexWrap: 'wrap',
-                }}
-              >
-                {item.immagini.slice(0, 3).map((src, idx) => (
-                  <div
-                    key={idx}
-                    style={{
-                      flex: '1 1 0',
-                      minWidth: '120px',
-                      height: '180px',
-                      position: 'relative',
-                      overflow: 'hidden',
-                    }}
-                  >
-                    <Image
-                      src={src}
-                      alt=""
-                      fill
-                      sizes="(max-width: 768px) 50vw, 240px"
-                      style={{ objectFit: 'cover' }}
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
             {item.progetto_collegato && (
               <Link
                 href={`/${locale}/${locale === 'it' ? 'progetti' : 'projects'}/${item.progetto_collegato}`}
                 style={{
                   display: 'inline-block',
-                  marginTop: '12px',
+                  marginTop: '24px',
                   fontSize: '13px',
-                  fontWeight: 600,
+                  fontWeight: 500,
                   color: '#000',
-                  textDecorationLine: 'underline',
-                  textDecorationStyle: 'solid',
-                  textDecorationThickness: '1px',
-                  textDecorationColor: '#000',
+                  textDecoration: 'underline',
                   textUnderlineOffset: '4px',
                 }}
                 className="hover:!text-black"

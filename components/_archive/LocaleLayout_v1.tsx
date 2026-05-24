@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import Loader from '@/components/ui/Loader';
-import { Navbar } from '@/components/ui/Navbar';
+import { Sidebar } from '@/components/ui/Sidebar';
 
 export const metadata: Metadata = {
   icons: {
@@ -38,10 +38,12 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider messages={messages}>
       <Loader />
-      <Navbar locale={locale} />
-      <main className="pt-[110px] lg:pt-[120px] px-6 py-12 lg:px-16 lg:py-20">
-        {children}
-      </main>
+      <div className="flex min-h-screen bg-white">
+        <Sidebar locale={locale} />
+        <main className="flex-1 lg:ml-[280px] pt-[80px] lg:pt-20 px-6 py-12 lg:px-16 lg:py-20">
+          {children}
+        </main>
+      </div>
     </NextIntlClientProvider>
   );
 }

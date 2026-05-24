@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { getProjectBySlug, projects, categories } from '@/lib/data/projects';
-import { ProjectGallery } from '@/components/ui/ProjectGallery';
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -67,12 +67,9 @@ export default async function ProjectDetailPage({
 
   return (
     <article className="min-h-screen">
-      <div className="flex flex-col lg:flex-row gap-12 lg:items-start">
-        {/* Left: category filter — sticky on desktop */}
-        <aside
-          className="lg:w-[160px] flex-shrink-0 lg:sticky"
-          style={{ top: '120px', alignSelf: 'flex-start', zIndex: 1 }}
-        >
+      <div className="flex flex-col lg:flex-row gap-12">
+        {/* Left: category filter */}
+        <aside className="lg:w-[160px] flex-shrink-0">
           <p
             style={{
               fontSize: '11px',
@@ -109,21 +106,41 @@ export default async function ProjectDetailPage({
         </aside>
 
         {/* Center: project body */}
-        <div className="flex-1 max-w-[720px]" style={{ minWidth: 0 }}>
-          <h1 style={{ fontSize: '38px', fontWeight: 600, letterSpacing: '-0.01em', color: '#000', lineHeight: 1.2 }}>
+        <div className="flex-1 max-w-[720px]">
+          <h1 style={{ fontSize: '48px', fontWeight: 400, letterSpacing: '-0.01em', color: '#000', lineHeight: 1.2 }}>
             {project.titolo}
           </h1>
-          <h2 style={{ fontSize: '20px', fontWeight: 400, color: '#888', marginTop: '8px' }}>
+          <h2 style={{ fontSize: '22px', fontWeight: 500, color: '#888888', marginTop: '16px' }}>
             {project.sottotitolo}
           </h2>
 
           <div style={{ width: '80px', height: '1px', backgroundColor: '#000', margin: '32px 0' }} />
 
-          {/* Clickable gallery with lightbox — same-height tiles, variable width */}
-          <ProjectGallery images={project.immagini} title={project.titolo} />
+          {/* Image gallery — vertical stack, real colours */}
+          {project.immagini && project.immagini.length > 0 && (
+            <div style={{ marginBottom: '48px' }}>
+              {project.immagini.map((src, i) => (
+                <div key={i} style={{ marginBottom: '32px' }}>
+                  <Image
+                    src={src}
+                    alt={`${project.titolo} — ${locale === 'it' ? 'immagine' : 'image'} ${i + 1}`}
+                    width={1200}
+                    height={800}
+                    sizes="(max-width: 1024px) 100vw, 720px"
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                      border: '1px solid #eee',
+                    }}
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
 
           {project.descrizione && (
-            <p style={{ fontSize: '16px', fontWeight: 400, color: '#555', lineHeight: 1.7, whiteSpace: 'pre-line' }}>
+            <p style={{ fontSize: '18px', fontWeight: 400, color: '#000', lineHeight: 1.7, whiteSpace: 'pre-line' }}>
               {project.descrizione}
             </p>
           )}
@@ -147,59 +164,48 @@ export default async function ProjectDetailPage({
           )}
         </div>
 
-        {/* Right: tech sheet — sticky on desktop with internal scroll fallback */}
-        <aside
-          className="lg:w-[220px] flex-shrink-0 lg:sticky"
-          style={{
-            top: '120px',
-            alignSelf: 'flex-start',
-            zIndex: 1,
-            maxHeight: 'calc(100vh - 140px)',
-            overflowY: 'auto',
-          }}
-        >
-          <p
-            style={{
-              fontSize: '11px',
-              fontWeight: 500,
-              textTransform: 'uppercase',
-              letterSpacing: '0.15em',
-              color: '#888888',
-              marginBottom: '24px',
-            }}
-          >
-            {locale === 'it' ? 'Scheda tecnica' : 'Specifications'}
-          </p>
-          <dl>
-            {fields.map((field, i) => {
-              const isImporto = field.key === t('importo');
-              return (
-                <div key={`${field.key}-${i}`} style={{ marginBottom: '16px' }}>
+        {/* Right: tech sheet */}
+        <aside className="lg:w-[220px] flex-shrink-0">
+          <div className="lg:sticky lg:top-24">
+            <p
+              style={{
+                fontSize: '11px',
+                fontWeight: 500,
+                textTransform: 'uppercase',
+                letterSpacing: '0.15em',
+                color: '#888888',
+                marginBottom: '24px',
+              }}
+            >
+              {locale === 'it' ? 'Scheda tecnica' : 'Specifications'}
+            </p>
+            <dl>
+              {fields.map((field, i) => (
+                <div
+                  key={`${field.key}-${i}`}
+                  style={{
+                    borderTop: '1px solid #EEEEEE',
+                    paddingTop: '12px',
+                    paddingBottom: '12px',
+                  }}
+                >
                   <dt
                     style={{
-                      fontSize: '10px',
-                      fontWeight: 400,
+                      fontSize: '11px',
+                      fontWeight: 500,
                       textTransform: 'uppercase',
                       letterSpacing: '0.15em',
-                      color: '#aaa',
-                      marginBottom: '2px',
+                      color: '#888888',
+                      marginBottom: '4px',
                     }}
                   >
                     {field.key}
                   </dt>
-                  <dd
-                    style={{
-                      fontSize: isImporto ? '18px' : '16px',
-                      fontWeight: 600,
-                      color: '#000',
-                    }}
-                  >
-                    {String(field.value)}
-                  </dd>
+                  <dd style={{ fontSize: '13px', color: '#000' }}>{String(field.value)}</dd>
                 </div>
-              );
-            })}
-          </dl>
+              ))}
+            </dl>
+          </div>
         </aside>
       </div>
 

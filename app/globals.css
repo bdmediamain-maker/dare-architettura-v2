@@ -32,7 +32,8 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  /* clip (not hidden) so position:sticky on descendants keeps working */
+  overflow-x: clip;
 }
 
 /* Legacy grain class — visually disabled */
@@ -47,10 +48,11 @@ button, input, select, textarea, a, div, section, article, nav, header, footer {
   border-radius: 0;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #FFFFFF; }
-::-webkit-scrollbar-thumb { background: #CCCCCC; }
+/* Scrollbar — hidden visually (no stray vertical gray line) but scroll still works */
+::-webkit-scrollbar { width: 0; height: 0; background: transparent; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: transparent; }
+* { scrollbar-width: none; }
 
 /* Selection */
 ::selection { background: #000; color: #fff; }
@@ -58,4 +60,15 @@ button, input, select, textarea, a, div, section, article, nav, header, footer {
 /* Keep content-visibility for images/videos */
 img, video {
   content-visibility: auto;
+}
+
+/* Awards hover preview — hidden on mobile to avoid overlapping content */
+@media (max-width: 1023px) {
+  .awards-hover-image { display: none !important; }
+}
+
+/* Homepage project strip — infinite horizontal scroll */
+@keyframes scrollStrip {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }

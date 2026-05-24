@@ -42,20 +42,23 @@ export default async function CollaboratoriPage({ params }: { params: Promise<{ 
                   rel="noopener noreferrer"
                   style={{
                     fontSize: '15px',
-                    fontWeight: 500,
+                    fontWeight: 600,
                     color: '#000',
-                    textDecoration: 'underline',
+                    textDecorationLine: 'underline',
+                    textDecorationStyle: 'solid',
+                    textDecorationThickness: '1px',
+                    textDecorationColor: '#000',
                     textUnderlineOffset: '4px',
                   }}
                 >
                   {c.nome}
                 </a>
               ) : (
-                <span style={{ fontSize: '15px', fontWeight: 500, color: '#000' }}>{c.nome}</span>
+                <span style={{ fontSize: '15px', fontWeight: 600, color: '#000' }}>{c.nome}</span>
               )}
             </div>
-            <span style={{ fontSize: '13px', color: '#888888', minWidth: '180px' }}>{c.settore}</span>
-            <span style={{ fontFamily: 'monospace', fontSize: '13px', color: '#888888' }}>{c.citta}</span>
+            <span style={{ fontSize: '13px', fontWeight: 400, color: '#888', minWidth: '180px' }}>{c.settore}</span>
+            <span style={{ fontFamily: 'monospace', fontSize: '13px', fontWeight: 400, color: '#888' }}>{c.citta}</span>
           </div>
         ))}
       </div>

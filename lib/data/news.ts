@@ -5,6 +5,7 @@ export interface NewsItem {
   anno: number;
   testo: string;
   progetto_collegato?: string;
+  immagini?: string[];
 }
 
 export const news: NewsItem[] = [
@@ -13,21 +14,22 @@ export const news: NewsItem[] = [
     titolo: "Tabià",
     data: "22 Ottobre 2025",
     anno: 2025,
-    testo: "dare-architettura ha partecipato al concorso di progettazione in due fasi per la realizzazione del nuovo rifugio Spruggi Tonini in provincia di Trento."
+    testo: "dare-architettura ha partecipato al concorso di progettazione in due fasi per la realizzazione del nuovo rifugio Spruggi Tonini in provincia di Trento.",
+    immagini: ['/images/projects/it-auronzo-bivacco-fanton/01.jpg', '/images/projects/it-auronzo-bivacco-fanton/02.jpg'],
   },
   {
     slug: "clod-2025",
     titolo: "Clod",
     data: "12 Settembre 2025",
     anno: 2025,
-    testo: "dare-architettura ha avuto l'incarico per la progettazione della nuova palazzina uffici di circa 1100 mq per l'azienda Le Due Valli di Ostellato FE."
+    testo: "dare-architettura ha avuto l'incarico per la progettazione della nuova palazzina uffici di circa 1100 mq per l'azienda Le Due Valli di Ostellato FE.",
   },
   {
     slug: "torri-del-benaco-2025",
     titolo: "Torri del Benaco",
     data: "28 Aprile 2025",
     anno: 2025,
-    testo: "Sono iniziati i lavori per la riqualificazione della passerella pedonale del porto storico di Torri del Benaco sul lago di Garda."
+    testo: "Sono iniziati i lavori per la riqualificazione della passerella pedonale del porto storico di Torri del Benaco sul lago di Garda.",
   },
   {
     slug: "red-diamond-2024",
@@ -35,14 +37,19 @@ export const news: NewsItem[] = [
     data: "25 Settembre 2024",
     anno: 2024,
     testo: "dare-architettura ha terminato i lavori per la ristrutturazione completa di un fabbricato posto all'interno della cinta muraria di Ferrara.",
-    progetto_collegato: "casa-bagaro"
+    progetto_collegato: "it-ferrara-casa-bagaro",
+    immagini: [
+      '/images/projects/it-ferrara-casa-bagaro/01.jpg',
+      '/images/projects/it-ferrara-casa-bagaro/02.jpg',
+      '/images/projects/it-ferrara-casa-bagaro/03.jpg',
+    ],
   },
   {
     slug: "gorgonzola-2024",
     titolo: "Piazza Papa Giovanni XXIII — Gorgonzola",
     data: "26 Agosto 2024",
     anno: 2024,
-    testo: "dare-architettura ha partecipato al concorso di idee per la riqualificazione della piazza Papa Giovanni XXIII a Gorgonzola MI."
+    testo: "dare-architettura ha partecipato al concorso di idee per la riqualificazione della piazza Papa Giovanni XXIII a Gorgonzola MI.",
   },
   {
     slug: "cqap-comacchio-2024",
