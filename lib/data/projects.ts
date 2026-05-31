@@ -8,7 +8,7 @@ export type Project = {
   slug: string
   titolo: string
   sottotitolo: string | null
-  categoria: 'commerciale' | 'pubblico' | 'urbano-paesaggio' | 'residenziale' | 'design'
+  categoria: 'commerciale' | 'pubblico' | 'urbano-paesaggio' | 'residenziale' | 'design' | 'concorsi'
   categoria_label: string
   anno: number | null
   luogo: string | null
@@ -2830,6 +2830,7 @@ export const categories = [
   { key: 'urbano-paesaggio', label: 'Urbano - Paesaggio' },
   { key: 'residenziale', label: 'Residenziale' },
   { key: 'design', label: 'Design' },
+  { key: 'concorsi', label: 'Concorsi' },
 ] as const
 
 export function getProjectsByCategory(cat: Project['categoria']) {

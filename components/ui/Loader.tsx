@@ -20,7 +20,7 @@ export default function Loader() {
       sessionStorage.setItem('loader-shown', '1');
       setVisible(false);
       document.body.style.overflow = '';
-    }, 1500);
+    }, 3500);
     return () => {
       clearTimeout(t);
       document.body.style.overflow = '';
@@ -51,12 +51,12 @@ export default function Loader() {
             width={220}
             height={50}
             priority
-            style={{ width: 'auto', height: '56px', objectFit: 'contain' }}
+            style={{ width: 'auto', height: '80px', objectFit: 'contain' }}
           />
           <motion.div
             initial={{ width: 0 }}
-            animate={{ width: 200 }}
-            transition={{ duration: 0.8, delay: 0.2, ease }}
+            animate={{ width: 240 }}
+            transition={{ duration: 2.5, delay: 0.3, ease }}
             style={{ height: '1px', backgroundColor: '#000', marginTop: '32px' }}
           />
           <p

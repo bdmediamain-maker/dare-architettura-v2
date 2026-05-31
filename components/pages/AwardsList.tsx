@@ -106,6 +106,7 @@ export function AwardsList() {
             width: '420px',
             zIndex: 10,
             pointerEvents: 'none',
+            contain: 'layout paint',
           }}
         >
           <AnimatePresence mode="wait">
@@ -122,7 +123,7 @@ export function AwardsList() {
                 width={420}
                 height={315}
                 sizes="420px"
-                style={{ width: '100%', height: 'auto', filter: 'grayscale(1)' }}
+                style={{ width: '100%', height: 'auto' }}
               />
               <p
                 style={{

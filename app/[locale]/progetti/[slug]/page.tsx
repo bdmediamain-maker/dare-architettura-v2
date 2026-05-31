@@ -36,6 +36,7 @@ export default async function ProjectDetailPage({
         commerciale: 'Commerciale',
         'urbano-paesaggio': 'Urbano-Paesaggio',
         design: 'Design',
+        concorsi: 'Concorsi',
       }
     : {
         tutti: t('tutti'),
@@ -44,6 +45,7 @@ export default async function ProjectDetailPage({
         commerciale: 'Commercial',
         'urbano-paesaggio': 'Urban-Landscape',
         design: 'Design',
+        concorsi: 'Competitions',
       };
 
   const fields: { key: string; value: string | number | null | undefined }[] = [
@@ -171,34 +173,32 @@ export default async function ProjectDetailPage({
             {locale === 'it' ? 'Scheda tecnica' : 'Specifications'}
           </p>
           <dl>
-            {fields.map((field, i) => {
-              const isImporto = field.key === t('importo');
-              return (
-                <div key={`${field.key}-${i}`} style={{ marginBottom: '16px' }}>
-                  <dt
-                    style={{
-                      fontSize: '10px',
-                      fontWeight: 400,
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.15em',
-                      color: '#aaa',
-                      marginBottom: '2px',
-                    }}
-                  >
-                    {field.key}
-                  </dt>
-                  <dd
-                    style={{
-                      fontSize: isImporto ? '18px' : '16px',
-                      fontWeight: 600,
-                      color: '#000',
-                    }}
-                  >
-                    {String(field.value)}
-                  </dd>
-                </div>
-              );
-            })}
+            {fields.map((field, i) => (
+              <div key={`${field.key}-${i}`} style={{ marginBottom: '14px' }}>
+                <dt
+                  style={{
+                    fontSize: '9px',
+                    fontWeight: 400,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.15em',
+                    color: '#bbb',
+                    marginBottom: '2px',
+                  }}
+                >
+                  {field.key}
+                </dt>
+                <dd
+                  style={{
+                    fontSize: '14px',
+                    fontWeight: 400,
+                    color: '#333',
+                    lineHeight: 1.45,
+                  }}
+                >
+                  {String(field.value)}
+                </dd>
+              </div>
+            ))}
           </dl>
         </aside>
       </div>

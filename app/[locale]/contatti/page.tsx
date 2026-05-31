@@ -16,15 +16,15 @@ export default async function ContattiPage({ params }: { params: Promise<{ local
   };
 
   const valueStyle: React.CSSProperties = {
-    fontSize: '16px',
-    fontWeight: 600,
+    fontSize: '15px',
+    fontWeight: 400,
     color: '#000',
     lineHeight: 1.5,
   };
 
   const emailStyle: React.CSSProperties = {
-    fontSize: '20px',
-    fontWeight: 600,
+    fontSize: '15px',
+    fontWeight: 400,
     color: '#000',
     textDecorationLine: 'underline',
     textDecorationStyle: 'solid',

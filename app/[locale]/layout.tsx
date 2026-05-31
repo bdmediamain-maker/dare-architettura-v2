@@ -5,6 +5,7 @@ import { routing } from '@/i18n/routing';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import Loader from '@/components/ui/Loader';
 import { Navbar } from '@/components/ui/Navbar';
+import { PageTransition } from '@/components/ui/PageTransition';
 
 export const metadata: Metadata = {
   icons: {
@@ -40,7 +41,7 @@ export default async function LocaleLayout({
       <Loader />
       <Navbar locale={locale} />
       <main className="pt-[110px] lg:pt-[120px] px-6 py-12 lg:px-16 lg:py-20">
-        {children}
+        <PageTransition>{children}</PageTransition>
       </main>
     </NextIntlClientProvider>
   );

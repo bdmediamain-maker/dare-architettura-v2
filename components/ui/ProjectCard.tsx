@@ -39,7 +39,7 @@ export function ProjectCard({
       onMouseLeave={() => setHovered(false)}
     >
       <div
-        className="relative border border-black bg-white transition-all duration-200 group-hover:border-[2px]"
+        className="relative bg-white"
         style={{ overflow: 'hidden' }}
       >
         {/* Pictogram + info — default state */}
@@ -99,8 +99,9 @@ export function ProjectCard({
             style={{
               position: 'absolute',
               inset: 0,
+              border: 'none',
               opacity: hovered ? 1 : 0,
-              transition: 'opacity 400ms ease',
+              transition: 'opacity 500ms cubic-bezier(0.16, 1, 0.3, 1)',
               pointerEvents: 'none',
             }}
           >

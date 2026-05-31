@@ -77,34 +77,27 @@ export default async function StudioPage({ params }: { params: Promise<{ locale:
         <StudioNav locale={locale} />
       </div>
 
-      {/* Section 2: Magazine spread — 55/45 with hairline divider */}
+      {/* Section 2: Studio photo on the LEFT (full, not cropped) + text on the right */}
       <div
         className="grid grid-cols-1 md:grid-cols-[55%_45%]"
-        style={{ gap: 0, minHeight: '420px', marginTop: '8px' }}
+        style={{ gap: '40px', marginTop: '24px', alignItems: 'start' }}
       >
-        {/* LEFT: studio photo, full color, no border */}
-        <div className="relative" style={{ minHeight: '420px' }}>
+        {/* LEFT: studio photo — original aspect ratio, no crop, no border */}
+        <div>
           <Image
             src="/images/studio.jpg"
             alt={locale === 'it' ? 'Studio dare-architettura' : 'dare-architettura studio'}
-            fill
+            width={1531}
+            height={1027}
             sizes="(max-width: 768px) 100vw, 55vw"
-            style={{ objectFit: 'cover' }}
+            quality={95}
+            style={{ width: '100%', height: 'auto', display: 'block' }}
             priority
           />
         </div>
 
         {/* RIGHT: chi siamo + manifesto + mini stats */}
-        <div
-          className="md:border-l"
-          style={{
-            padding: '48px 40px',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            borderColor: '#eee',
-          }}
-        >
+        <div>
           <p style={eyebrow}>{locale === 'it' ? 'Chi siamo' : 'Who we are'}</p>
           <p
             style={{

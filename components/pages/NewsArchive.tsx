@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { AnimatePresence, motion } from 'framer-motion';
 import { news } from '@/lib/data/news';
 
 interface NewsArchiveProps {
@@ -16,6 +17,7 @@ for (let y = 2025; y >= 2008; y--) allYears.push(y);
 export function NewsArchive({ locale }: NewsArchiveProps) {
   const yearsWithNews = new Set(news.map(n => n.anno));
   const [activeYear, setActiveYear] = useState<number | null>(null);
+  const [hoveredNews, setHoveredNews] = useState<number | null>(null);
   const itemRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   const handleYearClick = (year: number) => {
@@ -93,6 +95,8 @@ export function NewsArchive({ locale }: NewsArchiveProps) {
             key={item.slug}
             ref={(el) => { itemRefs.current[item.slug] = el; }}
             id={`news-${item.slug}`}
+            onMouseEnter={() => setHoveredNews(i)}
+            onMouseLeave={() => setHoveredNews((h) => (h === i ? null : h))}
             style={{
               paddingTop: i === 0 ? '0' : '48px',
               paddingBottom: '48px',
@@ -123,37 +127,6 @@ export function NewsArchive({ locale }: NewsArchiveProps) {
             <p style={{ fontSize: '15px', fontWeight: 400, color: '#555', lineHeight: 1.65 }}>
               {item.testo}
             </p>
-            {item.immagini && item.immagini.length > 0 && (
-              <div
-                style={{
-                  display: 'flex',
-                  gap: '8px',
-                  marginTop: '24px',
-                  flexWrap: 'wrap',
-                }}
-              >
-                {item.immagini.slice(0, 3).map((src, idx) => (
-                  <div
-                    key={idx}
-                    style={{
-                      flex: '1 1 0',
-                      minWidth: '120px',
-                      height: '180px',
-                      position: 'relative',
-                      overflow: 'hidden',
-                    }}
-                  >
-                    <Image
-                      src={src}
-                      alt=""
-                      fill
-                      sizes="(max-width: 768px) 50vw, 240px"
-                      style={{ objectFit: 'cover' }}
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
             {item.progetto_collegato && (
               <Link
                 href={`/${locale}/${locale === 'it' ? 'progetti' : 'projects'}/${item.progetto_collegato}`}
@@ -177,6 +150,54 @@ export function NewsArchive({ locale }: NewsArchiveProps) {
           </div>
         ))}
       </div>
+
+      {/* Fixed hover preview — same pattern as awards page */}
+      {hoveredNews !== null && news[hoveredNews]?.immagini?.[0] && (
+        <div
+          className="awards-hover-image"
+          style={{
+            position: 'fixed',
+            right: 'calc((100vw - 900px) / 2)',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            width: '420px',
+            zIndex: 10,
+            pointerEvents: 'none',
+            contain: 'layout paint',
+          }}
+        >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={hoveredNews}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Image
+                src={news[hoveredNews].immagini![0]}
+                alt={news[hoveredNews].titolo}
+                width={420}
+                height={300}
+                sizes="420px"
+                style={{ width: '100%', height: 'auto' }}
+              />
+              <p
+                style={{
+                  fontFamily: 'monospace',
+                  fontSize: '11px',
+                  color: '#888',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  marginTop: '8px',
+                }}
+              >
+                {news[hoveredNews].titolo}
+              </p>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      )}
     </div>
   );
 }

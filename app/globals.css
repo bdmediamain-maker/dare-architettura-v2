@@ -62,13 +62,27 @@ img, video {
   content-visibility: auto;
 }
 
+/* Promote fixed/sticky layers to their own compositor layer for buttery scroll */
+[style*="position: fixed"],
+[style*="position: sticky"] {
+  backface-visibility: hidden;
+}
+
 /* Awards hover preview — hidden on mobile to avoid overlapping content */
 @media (max-width: 1023px) {
   .awards-hover-image { display: none !important; }
 }
 
-/* Homepage project strip — infinite horizontal scroll */
-@keyframes scrollStrip {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+/* Navbar link hover underline */
+.nav-link:hover .nav-link-underline { transform: scaleX(1) !important; }
+
+/* Homepage film strip animations */
+@keyframes filmScroll {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-33.33%); }
 }
+@keyframes filmScrollHorizontal {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-33.33%); }
+}
+

@@ -15,6 +15,7 @@ export default async function ProgettiPage({ params }: { params: Promise<{ local
         commerciale: 'Commerciale',
         'urbano-paesaggio': 'Urbano-Paesaggio',
         design: 'Design',
+        concorsi: 'Concorsi',
       }
     : {
         tutti: t('tutti'),
@@ -23,6 +24,7 @@ export default async function ProgettiPage({ params }: { params: Promise<{ local
         commerciale: 'Commercial',
         'urbano-paesaggio': 'Urban-Landscape',
         design: 'Design',
+        concorsi: 'Competitions',
       };
 
   return (

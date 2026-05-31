@@ -15,6 +15,14 @@ export function Navbar({ locale }: NavbarProps) {
   const tNav = useTranslations('nav');
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  // The homepage has a full-bleed photo behind the navbar — make it transparent there.
+  const isHome =
+    pathname === `/${locale}` ||
+    pathname === `/${locale}/` ||
+    pathname === '/' ||
+    pathname === '/it' ||
+    pathname === '/en';
+
   const projectsPath = locale === 'it' ? 'progetti' : 'projects';
   const contactsPath = locale === 'it' ? 'contatti' : 'contact';
 
@@ -34,6 +42,8 @@ export function Navbar({ locale }: NavbarProps) {
   const otherLocale = locale === 'it' ? 'en' : 'it';
   const otherLocalePath = `/${otherLocale}${pathname.replace(/^\/[a-z]{2}/, '')}`;
 
+  const textShadow = 'none';
+
   return (
     <>
       <nav
@@ -46,16 +56,23 @@ export function Navbar({ locale }: NavbarProps) {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          padding: '20px 40px',
-          background: 'rgba(255,255,255,0.92)',
-          backdropFilter: 'blur(8px)',
-          WebkitBackdropFilter: 'blur(8px)',
-          borderBottom: '1px solid #eee',
+          padding: '24px 40px',
+          background: isHome ? 'transparent' : 'rgba(255,255,255,0.95)',
+          backdropFilter: isHome ? 'none' : 'blur(8px)',
+          WebkitBackdropFilter: isHome ? 'none' : 'blur(8px)',
+          borderBottom: isHome ? 'none' : '1px solid #eee',
         }}
         className="lg:px-10 px-5"
       >
         {/* Left: single full logo image */}
-        <Link href={`/${locale}`} style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none' }}>
+        <Link
+          href={`/${locale}`}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            textDecoration: 'none',
+          }}
+        >
           <Image
             src="/logo-full.png"
             alt="dare-architettura"
@@ -67,8 +84,18 @@ export function Navbar({ locale }: NavbarProps) {
           />
         </Link>
 
-        {/* Desktop right: links + lang */}
-        <div className="hidden lg:flex" style={{ alignItems: 'center', gap: '32px' }}>
+        {/* Desktop center: page links absolutely centered in the navbar */}
+        <div
+          className="hidden lg:flex"
+          style={{
+            position: 'absolute',
+            left: '50%',
+            top: '50%',
+            transform: 'translate(-50%, -50%)',
+            alignItems: 'center',
+            gap: '32px',
+          }}
+        >
           {items.map((item) => {
             const active = isActive(item.href);
             return (
@@ -76,52 +103,74 @@ export function Navbar({ locale }: NavbarProps) {
                 key={item.href}
                 href={item.href}
                 style={{
+                  position: 'relative',
                   fontSize: '14px',
                   fontWeight: active ? 500 : 400,
                   color: active ? '#000' : '#666',
                   letterSpacing: '0.05em',
-                  textDecorationLine: active ? 'underline' : 'none',
-                  textDecorationStyle: 'solid',
-                  textDecorationThickness: '1px',
-                  textDecorationColor: '#000',
-                  textUnderlineOffset: '4px',
+                  textDecoration: 'none',
+                  textShadow,
                   transition: 'color 200ms ease',
                 }}
-                className="hover:!text-black"
+                className="nav-link hover:!text-black"
               >
-                {item.label}
+                <span>{item.label}</span>
+                <span
+                  className="nav-link-underline"
+                  style={{
+                    position: 'absolute',
+                    bottom: '-4px',
+                    left: 0,
+                    right: 0,
+                    height: '1px',
+                    background: '#000',
+                    transformOrigin: 'left',
+                    transform: active ? 'scaleX(1)' : 'scaleX(0)',
+                    transition: 'transform 300ms cubic-bezier(0.16, 1, 0.3, 1)',
+                  }}
+                />
               </Link>
             );
           })}
-          <div style={{ fontFamily: 'monospace', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '4px' }}>
-            <Link
-              href={locale === 'it' ? pathname : otherLocalePath}
-              style={{ color: locale === 'it' ? '#000' : '#888', fontWeight: locale === 'it' ? 500 : 400 }}
-            >
-              IT
-            </Link>
-            <span style={{ color: '#888' }}>/</span>
-            <Link
-              href={locale === 'en' ? pathname : otherLocalePath}
-              style={{ color: locale === 'en' ? '#000' : '#888', fontWeight: locale === 'en' ? 500 : 400 }}
-            >
-              EN
-            </Link>
-          </div>
         </div>
 
-        {/* Mobile: hamburger */}
+        {/* Desktop right: lang switcher */}
+        <div
+          className="hidden lg:flex"
+          style={{
+            fontFamily: 'monospace',
+            fontSize: '12px',
+            alignItems: 'center',
+            gap: '4px',
+            textShadow,
+          }}
+        >
+          <Link
+            href={locale === 'it' ? pathname : otherLocalePath}
+            style={{ color: locale === 'it' ? '#000' : '#888', fontWeight: locale === 'it' ? 500 : 400 }}
+          >
+            IT
+          </Link>
+          <span style={{ color: '#888' }}>/</span>
+          <Link
+            href={locale === 'en' ? pathname : otherLocalePath}
+            style={{ color: locale === 'en' ? '#000' : '#888', fontWeight: locale === 'en' ? 500 : 400 }}
+          >
+            EN
+          </Link>
+        </div>
+
+        {/* Mobile: hamburger (hidden on desktop via lg:hidden).
+            Use Tailwind for display so the lg:hidden actually wins (inline display would override). */}
         <button
           aria-label="menu"
           onClick={() => setMobileOpen((v) => !v)}
-          className="lg:hidden"
+          className="lg:hidden flex flex-col"
           style={{
             background: 'none',
             border: 'none',
             cursor: 'pointer',
             padding: '8px',
-            display: 'flex',
-            flexDirection: 'column',
             gap: '5px',
           }}
         >
