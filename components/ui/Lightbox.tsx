@@ -35,9 +35,13 @@ export function Lightbox({ images, alt, open, startIndex, onClose }: LightboxPro
   );
 
   useEffect(() => {
+    // Intentional: reset internal lightbox state whenever it opens / target index changes.
     if (open) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIndex(startIndex);
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setZoom(1);
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setPan({ x: 0, y: 0 });
     }
   }, [open, startIndex]);

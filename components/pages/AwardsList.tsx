@@ -32,11 +32,11 @@ export function AwardsList() {
                 cursor: 'default',
               }}
             >
-              {/* Year — GRIDA */}
+              {/* Year — slightly bigger than body, not dramatic */}
               <span
                 style={{
                   fontFamily: 'monospace',
-                  fontSize: '22px',
+                  fontSize: '16px',
                   fontWeight: 600,
                   color: '#000',
                   minWidth: '56px',
@@ -100,7 +100,7 @@ export function AwardsList() {
           className="awards-hover-image"
           style={{
             position: 'fixed',
-            right: 'calc((100vw - 900px) / 2)',
+            right: '40px',
             top: '50%',
             transform: 'translateY(-50%)',
             width: '420px',

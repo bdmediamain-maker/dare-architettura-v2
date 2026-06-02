@@ -40,7 +40,7 @@ export default async function LocaleLayout({
     <NextIntlClientProvider messages={messages}>
       <Loader />
       <Navbar locale={locale} />
-      <main className="pt-[110px] lg:pt-[120px] px-6 py-12 lg:px-16 lg:py-20">
+      <main className="pt-[130px] lg:pt-[140px] px-6 py-12 lg:px-16 lg:py-20">
         <PageTransition>{children}</PageTransition>
       </main>
     </NextIntlClientProvider>

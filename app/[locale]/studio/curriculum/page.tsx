@@ -90,7 +90,7 @@ export default async function CurriculumPage({ params }: { params: Promise<{ loc
               <span
                 style={{
                   fontFamily: 'monospace',
-                  fontSize: '22px',
+                  fontSize: '16px',
                   fontWeight: 600,
                   color: '#000',
                   minWidth: '56px',

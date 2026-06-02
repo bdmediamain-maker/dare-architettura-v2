@@ -1,5 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import { HomeHero } from '@/components/home/HomeHero';
+import { LockBodyScroll } from '@/components/ui/LockBodyScroll';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -20,6 +21,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <>
+      <LockBodyScroll />
       <HomeHero />
     </>
   );

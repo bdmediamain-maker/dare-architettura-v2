@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Archived dead code — kept for reference, not part of the active build
+    "components/_archive/**",
   ]),
 ]);
 

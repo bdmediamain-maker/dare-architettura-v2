@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import Loader from '@/components/ui/Loader';
-import { Sidebar } from '@/components/ui/Sidebar';
+import { Sidebar } from '@/components/_archive/Sidebar_v2';
 
 export const metadata: Metadata = {
   icons: {

@@ -88,8 +88,8 @@ export function NewsArchive({ locale }: NewsArchiveProps) {
         </div>
       </aside>
 
-      {/* News items */}
-      <div className="flex-1 max-w-[720px]">
+      {/* News items — limit width so hover image (420px) on the right doesn't overlap */}
+      <div className="flex-1 max-w-[720px] lg:max-w-[calc(100%-500px)]">
         {news.map((item, i) => (
           <div
             key={item.slug}
@@ -98,11 +98,27 @@ export function NewsArchive({ locale }: NewsArchiveProps) {
             onMouseEnter={() => setHoveredNews(i)}
             onMouseLeave={() => setHoveredNews((h) => (h === i ? null : h))}
             style={{
-              paddingTop: i === 0 ? '0' : '48px',
-              paddingBottom: '48px',
-              borderTop: i === 0 ? 'none' : '1px solid #eee',
+              padding: '24px 16px 24px 16px',
+              borderBottom: '1px solid #eee',
+              position: 'relative',
+              transition: 'background 200ms',
+              background: hoveredNews === i ? '#f8f8f8' : 'transparent',
             }}
           >
+            {/* Animated left border line on hover (premi-style) */}
+            <div
+              style={{
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                bottom: 0,
+                width: '2px',
+                background: '#000',
+                transform: hoveredNews === i ? 'scaleY(1)' : 'scaleY(0)',
+                transformOrigin: 'top',
+                transition: 'transform 0.3s ease',
+              }}
+            />
             {/* Date — SUSSURRA */}
             <p
               style={{
@@ -157,7 +173,7 @@ export function NewsArchive({ locale }: NewsArchiveProps) {
           className="awards-hover-image"
           style={{
             position: 'fixed',
-            right: 'calc((100vw - 900px) / 2)',
+            right: '40px',
             top: '50%',
             transform: 'translateY(-50%)',
             width: '420px',

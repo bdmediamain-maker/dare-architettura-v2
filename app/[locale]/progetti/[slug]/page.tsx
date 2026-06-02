@@ -125,7 +125,17 @@ export default async function ProjectDetailPage({
           <ProjectGallery images={project.immagini} title={project.titolo} />
 
           {project.descrizione && (
-            <p style={{ fontSize: '16px', fontWeight: 400, color: '#555', lineHeight: 1.7, whiteSpace: 'pre-line' }}>
+            <p
+              style={{
+                fontSize: '16px',
+                fontWeight: 400,
+                color: '#555',
+                lineHeight: 1.7,
+                textAlign: 'justify',
+                whiteSpace: 'pre-line',
+                maxWidth: '100%',
+              }}
+            >
               {project.descrizione}
             </p>
           )}

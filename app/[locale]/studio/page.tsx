@@ -77,33 +77,30 @@ export default async function StudioPage({ params }: { params: Promise<{ locale:
         <StudioNav locale={locale} />
       </div>
 
-      {/* Section 2: Studio photo on the LEFT (full, not cropped) + text on the right */}
-      <div
-        className="grid grid-cols-1 md:grid-cols-[55%_45%]"
-        style={{ gap: '40px', marginTop: '24px', alignItems: 'start' }}
-      >
-        {/* LEFT: studio photo — original aspect ratio, no crop, no border */}
+      {/* Section 2: Studio photo on TOP, chi siamo BELOW — same width, left-aligned */}
+      <div style={{ marginTop: '24px', maxWidth: '680px' }}>
+        {/* Photo */}
         <div>
           <Image
             src="/images/studio.jpg"
             alt={locale === 'it' ? 'Studio dare-architettura' : 'dare-architettura studio'}
             width={1531}
             height={1027}
-            sizes="(max-width: 768px) 100vw, 55vw"
+            sizes="(max-width: 768px) 100vw, 680px"
             quality={95}
             style={{ width: '100%', height: 'auto', display: 'block' }}
             priority
           />
         </div>
 
-        {/* RIGHT: chi siamo + manifesto + mini stats */}
-        <div>
+        {/* Chi siamo — directly below the photo, same width */}
+        <div style={{ marginTop: '32px' }}>
           <p style={eyebrow}>{locale === 'it' ? 'Chi siamo' : 'Who we are'}</p>
           <p
             style={{
               fontStyle: 'italic',
-              fontSize: '20px',
-              lineHeight: 1.65,
+              fontSize: '17px',
+              lineHeight: 1.6,
               color: '#000',
             }}
           >
@@ -113,11 +110,11 @@ export default async function StudioPage({ params }: { params: Promise<{ locale:
           {/* Mini stats row */}
           <div
             style={{
-              marginTop: '32px',
-              paddingTop: '20px',
+              marginTop: '24px',
+              paddingTop: '16px',
               borderTop: '1px solid #ddd',
               display: 'flex',
-              gap: '40px',
+              gap: '32px',
               flexWrap: 'wrap',
             }}
           >
@@ -173,10 +170,10 @@ export default async function StudioPage({ params }: { params: Promise<{ locale:
                 alignItems: 'baseline',
               }}
             >
-              {/* Number — GRIDA */}
+              {/* Number — slightly bigger than label, not dramatic */}
               <span
                 style={{
-                  fontSize: '28px',
+                  fontSize: '17px',
                   fontWeight: 600,
                   color: '#000',
                   fontFamily: 'monospace',
