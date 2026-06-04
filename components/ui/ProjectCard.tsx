@@ -110,8 +110,14 @@ export function ProjectCard({
         {/* DIVIDER — always visible */}
         <div style={{ borderTop: '1px solid #000' }} />
 
-        {/* BOTTOM: text — NEVER covered by hover photo */}
-        <div style={{ padding: '12px 16px' }}>
+        {/* BOTTOM: text — NEVER covered by hover photo. Gray fill on hover. */}
+        <div
+          style={{
+            padding: '12px 16px',
+            background: hovered ? '#e0e0e0' : '#FFFFFF',
+            transition: 'background 200ms ease',
+          }}
+        >
           <p style={{ fontFamily: 'monospace', fontSize: '12px', color: '#aaa', marginBottom: '2px' }}>
             {anno ?? '—'}
           </p>

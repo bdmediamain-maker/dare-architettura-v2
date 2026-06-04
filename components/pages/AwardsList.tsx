@@ -2,10 +2,14 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
-import { awards } from '@/lib/data/awards';
+import { awards as rawAwards } from '@/lib/data/awards';
+import { translateAwardsList } from '@/lib/i18n/translateNewsAwards';
 
 export function AwardsList() {
+  const locale = useLocale();
+  const awards = translateAwardsList(rawAwards, locale);
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { getNewsBySlug, news } from '@/lib/data/news';
+import { translateNews } from '@/lib/i18n/translateNewsAwards';
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -17,8 +18,9 @@ export default async function NewsDetailPage({
 }) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
-  const item = getNewsBySlug(slug);
-  if (!item) notFound();
+  const raw = getNewsBySlug(slug);
+  if (!raw) notFound();
+  const item = translateNews(raw, locale);
 
   const backLabel = locale === 'it' ? '← tutte le novità' : '← all news';
   const linkedLabel = locale === 'it' ? 'Progetto collegato' : 'Related project';

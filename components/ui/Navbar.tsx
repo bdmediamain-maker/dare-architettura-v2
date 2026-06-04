@@ -44,7 +44,7 @@ export function Navbar({ locale }: NavbarProps) {
           left: 0,
           right: 0,
           zIndex: 50,
-          padding: '20px 40px',
+          padding: '12px 40px',
           background: menuOpen ? '#e0e0e0' : '#fff',
           borderBottom: menuOpen ? '1px solid #ddd' : '1px solid #eee',
           // Smooth color shift, same curve as the dropdown panel below
@@ -55,9 +55,19 @@ export function Navbar({ locale }: NavbarProps) {
         }}
         className="lg:px-10 px-5"
       >
-        {/* Left: logo */}
-        <Link
+        {/* Left: logo — click clears the loader flag and reloads so the loader replays */}
+        <a
           href={`/${locale}`}
+          onClick={(e) => {
+            e.preventDefault();
+            try {
+              sessionStorage.removeItem('loader-shown');
+            } catch {
+              /* ignore (private mode) */
+            }
+            // Full reload guarantees the Loader mounts fresh and runs the animation
+            window.location.href = `/${locale}`;
+          }}
           style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -67,18 +77,19 @@ export function Navbar({ locale }: NavbarProps) {
           <Image
             src="/logo-full.png"
             alt="dare-architettura"
-            width={220}
-            height={50}
+            width={280}
+            height={60}
             priority
-            className="h-12 lg:h-14 w-auto"
             style={{
+              width: 'auto',
+              height: '80px',
               objectFit: 'contain',
               // Multiply makes the white background of the PNG blend with the
               // navbar bg — white → bg color, black logo stays black.
               mixBlendMode: 'multiply',
             }}
           />
-        </Link>
+        </a>
 
         {/* Desktop center: page links — absolutely centered. Hidden when hamburger is open. */}
         <div

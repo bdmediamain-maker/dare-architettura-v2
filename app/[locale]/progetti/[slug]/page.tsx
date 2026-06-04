@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { getProjectBySlug, projects, categories } from '@/lib/data/projects';
+import { translateProject } from '@/lib/i18n/translateProject';
 import { ProjectGallery } from '@/components/ui/ProjectGallery';
 
 export function generateStaticParams() {
@@ -18,14 +19,18 @@ export default async function ProjectDetailPage({
 }) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
-  const project = getProjectBySlug(slug);
-  if (!project) notFound();
+  const rawProject = getProjectBySlug(slug);
+  if (!rawProject) notFound();
+  const project = translateProject(rawProject, locale);
 
   const t = await getTranslations({ locale, namespace: 'progetti' });
 
   const projectIndex = projects.findIndex(p => p.slug === slug);
-  const prevProject = projectIndex > 0 ? projects[projectIndex - 1] : null;
-  const nextProject = projectIndex < projects.length - 1 ? projects[projectIndex + 1] : null;
+  const prevProjectRaw = projectIndex > 0 ? projects[projectIndex - 1] : null;
+  const nextProjectRaw =
+    projectIndex < projects.length - 1 ? projects[projectIndex + 1] : null;
+  const prevProject = prevProjectRaw ? translateProject(prevProjectRaw, locale) : null;
+  const nextProject = nextProjectRaw ? translateProject(nextProjectRaw, locale) : null;
   const projectsPath = locale === 'it' ? 'progetti' : 'projects';
 
   const categoryLabels: Record<string, string> = locale === 'it'

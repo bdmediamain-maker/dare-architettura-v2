@@ -1,6 +1,6 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import Image from 'next/image';
 import { StudioNav } from '@/components/pages/StudioNav';
+import { StudioPhotoSlider } from '@/components/pages/StudioPhotoSlider';
 import { projects } from '@/lib/data/projects';
 
 export default async function StudioPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -77,21 +77,12 @@ export default async function StudioPage({ params }: { params: Promise<{ locale:
         <StudioNav locale={locale} />
       </div>
 
-      {/* Section 2: Studio photo on TOP, chi siamo BELOW — same width, left-aligned */}
+      {/* Section 2: Studio photo slider on TOP, chi siamo BELOW — same width, left-aligned */}
       <div style={{ marginTop: '24px', maxWidth: '680px' }}>
-        {/* Photo */}
-        <div>
-          <Image
-            src="/images/studio.jpg"
-            alt={locale === 'it' ? 'Studio dare-architettura' : 'dare-architettura studio'}
-            width={1531}
-            height={1027}
-            sizes="(max-width: 768px) 100vw, 680px"
-            quality={95}
-            style={{ width: '100%', height: 'auto', display: 'block' }}
-            priority
-          />
-        </div>
+        {/* Photo slider — cycles through studio photos */}
+        <StudioPhotoSlider
+          alt={locale === 'it' ? 'Studio dare-architettura' : 'dare-architettura studio'}
+        />
 
         {/* Chi siamo — directly below the photo, same width */}
         <div style={{ marginTop: '32px' }}>

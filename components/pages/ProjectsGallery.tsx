@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { ProjectCard } from '@/components/ui/ProjectCard';
 import { projects, categories } from '@/lib/data/projects';
+import { translateProjects } from '@/lib/i18n/translateProject';
 
 interface ProjectsGalleryProps {
   locale: string;
@@ -11,11 +12,12 @@ interface ProjectsGalleryProps {
 
 export function ProjectsGallery({ locale, labels }: ProjectsGalleryProps) {
   const [activeCategory, setActiveCategory] = useState<'tutti' | (typeof categories)[number]['key']>('tutti');
+  const localised = useMemo(() => translateProjects(projects, locale), [locale]);
 
   const filtered =
     activeCategory === 'tutti'
-      ? projects
-      : projects.filter(p => p.categoria === activeCategory);
+      ? localised
+      : localised.filter(p => p.categoria === activeCategory);
 
   const tabs: { key: 'tutti' | (typeof categories)[number]['key']; label: string }[] = [
     { key: 'tutti', label: labels.tutti },
