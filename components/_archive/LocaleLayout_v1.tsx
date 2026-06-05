@@ -3,7 +3,7 @@ import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { getMessages, setRequestLocale } from 'next-intl/server';
-import Loader from '@/components/ui/Loader';
+import Loader from '@/components/_archive/Loader_letters_v1';
 import { Sidebar } from '@/components/_archive/Sidebar_v2';
 
 export const metadata: Metadata = {

@@ -118,7 +118,7 @@ export default function Loader() {
                 style={{
                   fontSize: '36px',
                   fontWeight: 500,
-                  fontFamily: "'Inter', 'Helvetica Neue', sans-serif",
+                  fontFamily: 'inherit',
                   color: '#000',
                   display: 'inline-block',
                 }}
@@ -153,7 +153,7 @@ export default function Loader() {
                 style={{
                   fontSize: '14px',
                   fontWeight: 400,
-                  fontFamily: "'Inter', 'Helvetica Neue', sans-serif",
+                  fontFamily: 'inherit',
                   color: '#000',
                   display: 'inline-block',
                 }}

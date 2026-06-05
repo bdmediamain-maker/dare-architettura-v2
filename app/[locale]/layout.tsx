@@ -3,7 +3,6 @@ import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { getMessages, setRequestLocale } from 'next-intl/server';
-import Loader from '@/components/ui/Loader';
 import { Navbar } from '@/components/ui/Navbar';
 import { PageTransition } from '@/components/ui/PageTransition';
 
@@ -38,7 +37,6 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <Loader />
       <Navbar locale={locale} />
       <main className="pt-[130px] lg:pt-[140px] px-6 py-12 lg:px-16 lg:py-20">
         <PageTransition>{children}</PageTransition>
