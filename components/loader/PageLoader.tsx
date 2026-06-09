@@ -37,7 +37,7 @@ interface PageLoaderProps {
   holdMs?: number;
 }
 
-export default function PageLoader({ onComplete, holdMs = 1200 }: PageLoaderProps) {
+export default function PageLoader({ onComplete, holdMs = 200 }: PageLoaderProps) {
   // SSR-safe: durante l'idratazione non sappiamo la dimensione;
   // rendiamo null e poi scegliamo lato client.
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
